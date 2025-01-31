@@ -6,7 +6,7 @@
 
 void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
 void ADronePawn::Look(const FInputActionValue& Value)
