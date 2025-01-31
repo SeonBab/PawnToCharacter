@@ -14,4 +14,9 @@ class PAWNTOCHARACTER_API ADronePawn : public APlayerPawn
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	virtual void Look(const FInputActionValue& Value) override;
 };
