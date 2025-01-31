@@ -24,4 +24,6 @@ public:
 	TObjectPtr<UInputAction> MoveAction;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Input")
 	TObjectPtr<UInputAction> LookAction;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Input")
+	TObjectPtr<UInputAction> HoverAction;
 };
