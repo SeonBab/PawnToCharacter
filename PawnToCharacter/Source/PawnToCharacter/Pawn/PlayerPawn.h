@@ -51,5 +51,5 @@ private:
 	TObjectPtr<UCameraComponent> CameraComp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
-	float Speed;
+	float Speed = 600.f;
 };
