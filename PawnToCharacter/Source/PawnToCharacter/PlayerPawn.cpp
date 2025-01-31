@@ -47,12 +47,12 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	{
 		if (APawnPlayerController* PlayerController = Cast<APawnPlayerController>(GetController()))
 		{
-			if (!PlayerController->MoveAction.IsNull())
+			if (PlayerController->MoveAction)
 			{
 				EnhancedInput->BindAction(PlayerController->MoveAction.Get(), ETriggerEvent::Triggered, this, &APlayerPawn::Move);
 			}
 
-			if (!PlayerController->LookAction.IsNull())
+			if (PlayerController->LookAction)
 			{
 				EnhancedInput->BindAction(PlayerController->LookAction.Get(), ETriggerEvent::Triggered, this, &APlayerPawn::Look);
 			}
