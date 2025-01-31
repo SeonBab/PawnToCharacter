@@ -28,12 +28,12 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-private:
+protected:
 	UFUNCTION()
 	void Move(const FInputActionValue& Value);
 
 	UFUNCTION()
-	void Look(const FInputActionValue& Value);
+	virtual void Look(const FInputActionValue& Value);
 
 private:
 	// 충돌 컴포넌트

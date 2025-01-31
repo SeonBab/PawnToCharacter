@@ -89,9 +89,13 @@ void APlayerPawn::Look(const FInputActionValue& Value)
 	}
 
 	FVector2D LookInput = Value.Get<FVector2D>();
-	if (!FMath::IsNearlyZero(LookInput.SizeSquared()))
+	if (!FMath::IsNearlyZero(LookInput.X))
 	{
-		AddActorLocalRotation(FRotator(LookInput.Y, LookInput.X, 0), false);
+		AddActorLocalRotation(FRotator(0, LookInput.X, 0), false);
+	}
+	if (!FMath::IsNearlyZero(LookInput.Y))
+	{
+		SpringArmComp->AddLocalRotation(FRotator(LookInput.Y, 0, 0), false);
 	}
 }
 
