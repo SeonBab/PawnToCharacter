@@ -63,6 +63,22 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void APlayerPawn::Move(const FInputActionValue& Value)
 {
+	if (!Controller)
+	{
+		return;
+	}
+
+	FVector2D MoveInput = Value.Get<FVector2D>();
+	if (!FMath::IsNearlyZero(MoveInput.SizeSquared()))
+	{
+		MoveInput.Normalize();
+
+		FVector MoveDirection(MoveInput, 0);
+
+		float DeltaTime = GetWorld()->GetDeltaSeconds();
+
+		AddActorLocalOffset(MoveDirection * Speed * DeltaTime);
+	}
 }
 
 void APlayerPawn::Look(const FInputActionValue& Value)
