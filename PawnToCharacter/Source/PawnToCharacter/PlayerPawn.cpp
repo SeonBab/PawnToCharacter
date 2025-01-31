@@ -5,6 +5,8 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "EnhancedInputComponent.h"
+#include "PawnPlayerController.h"
 
 APlayerPawn::APlayerPawn()
 {
@@ -41,5 +43,29 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		if (APawnPlayerController* PlayerController = Cast<APawnPlayerController>(GetController()))
+		{
+			if (!PlayerController->MoveAction.IsNull())
+			{
+				EnhancedInput->BindAction(PlayerController->MoveAction.Get(), ETriggerEvent::Triggered, this, &APlayerPawn::Move);
+			}
+
+			if (!PlayerController->LookAction.IsNull())
+			{
+				EnhancedInput->BindAction(PlayerController->LookAction.Get(), ETriggerEvent::Triggered, this, &APlayerPawn::Look);
+			}
+		}
+	}
+
+}
+
+void APlayerPawn::Move(const FInputActionValue& Value)
+{
+}
+
+void APlayerPawn::Look(const FInputActionValue& Value)
+{
 }
 

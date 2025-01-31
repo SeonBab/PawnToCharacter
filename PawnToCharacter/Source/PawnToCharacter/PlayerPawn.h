@@ -10,6 +10,8 @@ class UCapsuleComponent;
 class USpringArmComponent;
 class UCameraComponent;
 
+struct FInputActionValue;
+
 UCLASS()
 class PAWNTOCHARACTER_API APlayerPawn : public APawn
 {
@@ -25,6 +27,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	UFUNCTION()
+	void Move(const FInputActionValue& Value);
+
+	UFUNCTION()
+	void Look(const FInputActionValue& Value);
 
 private:
 	// 충돌 컴포넌트
