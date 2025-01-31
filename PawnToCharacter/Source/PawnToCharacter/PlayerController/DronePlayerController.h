@@ -14,4 +14,7 @@ class PAWNTOCHARACTER_API ADronePlayerController : public ABasePlayerController
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Input")
+	TObjectPtr<UInputAction> RollAction;
 };

@@ -22,6 +22,11 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 			{
 				EnhancedInput->BindAction(PlayerController->LookAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Look);
 			}
+
+			if (PlayerController->RollAction)
+			{
+				EnhancedInput->BindAction(PlayerController->RollAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Roll);
+			}
 		}
 	}
 }
@@ -58,5 +63,14 @@ void ADronePawn::Look(const FInputActionValue& Value)
 	if (!FMath::IsNearlyZero(LookInput.SizeSquared()))
 	{
 		AddActorLocalRotation(FRotator(LookInput.Y, LookInput.X, 0), false);
+	}
+}
+
+void ADronePawn::Roll(const FInputActionValue& Value)
+{
+	float RollInput = Value.Get<float>();
+	if (!FMath::IsNearlyZero(RollInput))
+	{
+		AddActorLocalRotation(FRotator(0, 0, RollInput * RollSpeed), false);
 	}
 }
