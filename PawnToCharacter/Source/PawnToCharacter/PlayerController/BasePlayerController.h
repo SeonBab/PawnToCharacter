@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "PawnPlayerController.generated.h"
+#include "BasePlayerController.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
 
 UCLASS()
-class PAWNTOCHARACTER_API APawnPlayerController : public APlayerController
+class PAWNTOCHARACTER_API ABasePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
@@ -24,6 +24,4 @@ public:
 	TObjectPtr<UInputAction> MoveAction;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Input")
 	TObjectPtr<UInputAction> LookAction;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Input")
-	TObjectPtr<UInputAction> HoverAction;
 };

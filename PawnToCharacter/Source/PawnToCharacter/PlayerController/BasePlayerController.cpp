@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "PawnPlayerController.h"
+#include "BasePlayerController.h"
 #include "EnhancedInputSubsystems.h"
 
-void APawnPlayerController::BeginPlay()
+void ABasePlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -12,7 +12,7 @@ void APawnPlayerController::BeginPlay()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* SubSystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
 		{
-			if (!IMC.IsNull())
+			if (IMC)
 			{
 				SubSystem->AddMappingContext(IMC, 0);
 			}

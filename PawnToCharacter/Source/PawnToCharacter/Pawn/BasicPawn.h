@@ -4,26 +4,28 @@
 
 #include "CoreMinimal.h"
 #include "BasePawn.h"
-#include "DronePawn.generated.h"
+#include "BasicPawn.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class PAWNTOCHARACTER_API ADronePawn : public ABasePawn
+class PAWNTOCHARACTER_API ABasicPawn : public ABasePawn
 {
 	GENERATED_BODY()
-	
+
 public:
+	ABasicPawn();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:	
+	virtual void Tick(float DeltaTime) override;
+
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
 	UFUNCTION()
 	void Move(const FInputActionValue& Value);
+
 	UFUNCTION()
 	void Look(const FInputActionValue& Value);
-
-private:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
-	float HoverSpeed = 300.f;
 };

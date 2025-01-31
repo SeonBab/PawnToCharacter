@@ -3,7 +3,7 @@
 
 #include "DronePawn.h"
 #include "EnhancedInputComponent.h"
-#include "PawnPlayerController.h"
+#include "DronePlayerController.h"
 
 void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -11,13 +11,39 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		if (APawnPlayerController* PlayerController = Cast<APawnPlayerController>(GetController()))
+		if (ADronePlayerController* PlayerController = Cast<ADronePlayerController>(GetController()))
 		{
-			if (PlayerController->HoverAction)
+			if (PlayerController->MoveAction)
 			{
-				EnhancedInput->BindAction(PlayerController->HoverAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Hover);
+				EnhancedInput->BindAction(PlayerController->MoveAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Move);
+			}
+
+			if (PlayerController->LookAction)
+			{
+				EnhancedInput->BindAction(PlayerController->LookAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Look);
 			}
 		}
+	}
+}
+
+void ADronePawn::Move(const FInputActionValue& Value)
+{
+	if (!Controller)
+	{
+		return;
+	}
+
+	FVector MoveInput = Value.Get<FVector>();
+	if (!FMath::IsNearlyZero(MoveInput.SizeSquared()))
+	{
+		MoveInput.Normalize();
+
+		float DeltaTime = GetWorld()->GetDeltaSeconds();
+		MoveInput.X *= Speed * DeltaTime;
+		MoveInput.Y *= Speed * DeltaTime;
+		MoveInput.Z *= HoverSpeed * DeltaTime;
+
+		AddActorLocalOffset(MoveInput, true);
 	}
 }
 
@@ -33,9 +59,4 @@ void ADronePawn::Look(const FInputActionValue& Value)
 	{
 		AddActorLocalRotation(FRotator(LookInput.Y, LookInput.X, 0), false);
 	}
-}
-
-void ADronePawn::Hover(const FInputActionValue& Value)
-{
-
 }

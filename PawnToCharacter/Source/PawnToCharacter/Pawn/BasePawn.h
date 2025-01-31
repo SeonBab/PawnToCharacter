@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "PlayerPawn.generated.h"
+#include "BasePawn.generated.h"
 
 class UCapsuleComponent;
 class USpringArmComponent;
@@ -13,12 +13,12 @@ class UCameraComponent;
 struct FInputActionValue;
 
 UCLASS()
-class PAWNTOCHARACTER_API APlayerPawn : public APawn
+class PAWNTOCHARACTER_API ABasePawn : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	APlayerPawn();
+	ABasePawn();
 
 protected:
 	virtual void BeginPlay() override;
@@ -29,13 +29,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
-	UFUNCTION()
-	void Move(const FInputActionValue& Value);
-
-	UFUNCTION()
-	virtual void Look(const FInputActionValue& Value);
-
-private:
 	// 충돌 컴포넌트
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = true))
 	TObjectPtr<UCapsuleComponent> CapsuleComp;
