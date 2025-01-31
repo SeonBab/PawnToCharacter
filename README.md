@@ -83,34 +83,28 @@
 SpartaPuzzle
 ┃
 ┃
-┣ Actor      // 디렉토리
+┣ Pawn      // 디렉토리
 ┃ ┃
-┃ ┣ SpawnActor.h      // 헤더
-┃ ┣ SpawnActor.cpp    // 구현
+┃ ┣ BasePawn.h      // 헤더
+┃ ┣ BasePawn.cpp    // 구현
 ┃ ┃
-┃ ┣ BaseActor.h      // 헤더
-┃ ┣ BaseActor.cpp    // 구현
+┃ ┣ BasicPawn.h      // 헤더
+┃ ┣ BasicPawn.cpp    // 구현
 ┃ ┃
-┃ ┣ MovingActor.h      // 헤더
-┃ ┣ MovingActor.cpp    // 구현
-┃ ┃
-┃ ┣ RotatingActor.h      // 헤더
-┃ ┣ RotatingActor.cpp    // 구현
-┃ ┃
-┃ ┣ HidingActor.h      // 헤더
-┃ ┣ HidingActor.cpp    // 구현
-┃ ┃
-┃ ┣ FallingActor.h      // 헤더
-┃ ┣ FallingActor.cpp    // 구현
+┃ ┣ DronePawn.h      // 헤더
+┃ ┣ DronePawn.cpp    // 구현
 ┃
 ┃
-┣ Player      // 디렉토리
+┣ PlayerController      // 디렉토리
 ┃ ┃
-┃ ┣ PuzzleCharacter.h      // 헤더
-┃ ┣ PuzzleCharacter.cpp    // 구현
+┃ ┣ BasePlayerController.h      // 헤더
+┃ ┣ BasePlayerController.cpp    // 구현
 ┃ ┃
-┃ ┣ PuzzlePlayerController.h      // 헤더
-┃ ┣ PuzzlePlayerController.cpp    // 구현
+┃ ┣ BasicPlayerController.h      // 헤더
+┃ ┣ BasicPlayerController.cpp    // 구현
+┃ ┃
+┃ ┣ DronePlayerController.h      // 헤더
+┃ ┣ DronePlayerController.cpp    // 구현
 ```
 
 ## 클래스 다이어그램
@@ -124,10 +118,12 @@ SpartaPuzzle
 |테스트 제목|테스트 절차|케이스 분류|
 |---|---|---|
 |폰 컴포넌트 확인|컴포넌트가 정상적으로 추가됐는지 확인|Normal|
-|APlayerPawn의 Move함수 동작 확인|이동이 의도대로 동작하는지 확인|Normal|
-|APlayerPawn의 Look함수 동작 확인|폰 및 카메라 회전이 의도대로 동작하는지 확인|Normal|
+|ABaiscPawn의 Move함수 동작 확인|이동이 의도대로 동작하는지 확인|Normal|
+|ABaiscPawn의 Look함수 동작 확인|폰 및 카메라 회전이 의도대로 동작하는지 확인|Normal|
+|ADronePawn의 Move함수 동작 확인|이동이 의도대로 동작하는지 확인|Normal|
 |ADronePawn의 Look함수 동작 확인|폰 및 카메라 회전이 의도대로 동작하는지 확인|Normal|
-|||Normal|
+|ADronePawn의 Roll함수 동작 확인|폰 및 카메라 회전이 좌우로 회전하는지 확인|Normal|
+|ADronePawn의||Normal|
 
 ## 주의사항
 
