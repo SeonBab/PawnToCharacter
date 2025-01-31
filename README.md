@@ -123,10 +123,10 @@ SpartaPuzzle
 
 |테스트 제목|테스트 절차|케이스 분류|
 |---|---|---|
-|||Normal|
-|||Normal|
-|||Normal|
-|||Normal|
+|폰 컴포넌트 확인|컴포넌트가 정상적으로 추가됐는지 확인|Normal|
+|APlayerPawn의 Move함수 동작 확인|이동이 의도대로 동작하는지 확인|Normal|
+|APlayerPawn의 Look함수 동작 확인|폰 및 카메라 회전이 의도대로 동작하는지 확인|Normal|
+|ADronePawn의 Look함수 동작 확인|폰 및 카메라 회전이 의도대로 동작하는지 확인|Normal|
 |||Normal|
 
 ## 주의사항
