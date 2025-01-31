@@ -17,6 +17,9 @@ class PAWNTOCHARACTER_API ADronePawn : public APlayerPawn
 public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-private:
+protected:
+	UFUNCTION()
 	virtual void Look(const FInputActionValue& Value) override;
+	UFUNCTION()
+	virtual void Hover(const FInputActionValue& Value);
 };

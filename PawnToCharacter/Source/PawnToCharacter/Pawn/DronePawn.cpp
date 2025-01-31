@@ -3,10 +3,22 @@
 
 #include "DronePawn.h"
 #include "EnhancedInputComponent.h"
+#include "PawnPlayerController.h"
 
 void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		if (APawnPlayerController* PlayerController = Cast<APawnPlayerController>(GetController()))
+		{
+			if (PlayerController->HoverAction)
+			{
+				EnhancedInput->BindAction(PlayerController->HoverAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Hover);
+			}
+		}
+	}
 }
 
 void ADronePawn::Look(const FInputActionValue& Value)
@@ -21,4 +33,9 @@ void ADronePawn::Look(const FInputActionValue& Value)
 	{
 		AddActorLocalRotation(FRotator(LookInput.Y, LookInput.X, 0), false);
 	}
+}
+
+void ADronePawn::Hover(const FInputActionValue& Value)
+{
+
 }
