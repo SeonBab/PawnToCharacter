@@ -3,23 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "PlayerPawn.h"
 #include "DronePawn.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
-class PAWNTOCHARACTER_API ADronePawn : public APawn
+class PAWNTOCHARACTER_API ADronePawn : public APlayerPawn
 {
 	GENERATED_BODY()
-
-public:
-	ADronePawn();
-
-protected:
-	virtual void BeginPlay() override;
-
-public:	
-	virtual void Tick(float DeltaTime) override;
-
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 };

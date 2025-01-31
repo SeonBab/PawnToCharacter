@@ -83,5 +83,15 @@ void APlayerPawn::Move(const FInputActionValue& Value)
 
 void APlayerPawn::Look(const FInputActionValue& Value)
 {
+	if (!Controller)
+	{
+		return;
+	}
+
+	FVector2D LookInput = Value.Get<FVector2D>();
+	if (!FMath::IsNearlyZero(LookInput.SizeSquared()))
+	{
+		AddActorLocalRotation(FRotator(LookInput.Y, LookInput.X, 0), false);
+	}
 }
 
