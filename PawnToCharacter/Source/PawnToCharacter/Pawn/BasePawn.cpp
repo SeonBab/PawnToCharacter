@@ -67,22 +67,27 @@ void ABasePawn::Fall(float DeltaTime)
 	FHitResult HitResult;
 	AddActorWorldOffset(AddVector, true, &HitResult);
 
-	// 충돌이 발생한 경우
+	// 낙하 중 충돌이 발생한 경우
 	if (HitResult.GetActor())
 	{
 		// 공중에 떠있지 않음
 		bIsAir = false;
 
+		// 이동 속도 복구
 		CurMoveSpeed = MaxMoveSpeed;
 		// ZVelocity 초기화
 		ZVelocity = 0.f;
 	}
 	else
 	{
-		// 공중에 떠있음
-		bIsAir = true;
+		// 충돌한 오브젝트가 없고, ZVelocity가 0이 아니라 낙하 중에 공중에 떠있는 경우
+		if (!FMath::IsNearlyZero(ZVelocity))
+		{
+			bIsAir = true;
 
-		CurMoveSpeed = MaxMoveSpeed * AirControllSpeed;
+			// 공중 이동속도 수정
+			CurMoveSpeed = MaxMoveSpeed * AirControllSpeed;
+		}
 
 		if (!bIsHover)
 		{
