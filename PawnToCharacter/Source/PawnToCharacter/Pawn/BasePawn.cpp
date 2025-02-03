@@ -55,6 +55,11 @@ float ABasePawn::GetGravity() const
 	return Gravity;
 }
 
+float ABasePawn::GetCurMoveSpeed() const
+{
+	return CurMoveSpeed;
+}
+
 void ABasePawn::Fall(float DeltaTime)
 {
 	// 현재 속도로 낙하
@@ -67,6 +72,8 @@ void ABasePawn::Fall(float DeltaTime)
 	{
 		// 공중에 떠있지 않음
 		bIsAir = false;
+
+		CurMoveSpeed = MaxMoveSpeed;
 		// ZVelocity 초기화
 		ZVelocity = 0.f;
 	}
@@ -74,6 +81,8 @@ void ABasePawn::Fall(float DeltaTime)
 	{
 		// 공중에 떠있음
 		bIsAir = true;
+
+		CurMoveSpeed = MaxMoveSpeed * AirControllSpeed;
 
 		if (!bIsHover)
 		{

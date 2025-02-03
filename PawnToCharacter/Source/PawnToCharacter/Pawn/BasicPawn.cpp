@@ -61,7 +61,7 @@ void ABasicPawn::Move(const FInputActionValue& Value)
 
 		float DeltaTime = GetWorld()->GetDeltaSeconds();
 
-		AddActorLocalOffset(MoveDirection * MoveSpeed * DeltaTime);
+		AddActorLocalOffset(MoveDirection * CurMoveSpeed * DeltaTime);
 	}
 }
 

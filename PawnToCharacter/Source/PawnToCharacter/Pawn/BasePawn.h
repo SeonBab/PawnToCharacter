@@ -33,6 +33,8 @@ public:
 
 	float GetGravity() const;
 
+	float GetCurMoveSpeed() const;
+
 private:
 	void Fall(const float DeltaTime);
 
@@ -52,7 +54,8 @@ protected:
 	TObjectPtr<UCameraComponent> CameraComp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
-	float MoveSpeed = 600.f;
+	float MaxMoveSpeed = 600.f;
+	float CurMoveSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
 	float AirControllSpeed = 0.5f;
