@@ -28,6 +28,14 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+public:
+	void SetIsHover(const bool bNewIsHover);
+
+	float GetGravity() const;
+
+private:
+	void Fall(const float DeltaTime);
+
 protected:
 	// 충돌 컴포넌트
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = true))
@@ -45,4 +53,13 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
 	float Speed = 600.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
+	float AirControllSpeed = 0.5f;
+
+	bool bIsHover = false;
+	bool bIsAir = false;
+
+	float Gravity = 980.f;
+	float ZVelocity = 0.f;
 };

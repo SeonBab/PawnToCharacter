@@ -15,7 +15,11 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		{
 			if (PlayerController->MoveAction)
 			{
+				EnhancedInput->BindAction(PlayerController->MoveAction.Get(), ETriggerEvent::Started, this, &ADronePawn::MoveStart);
+
 				EnhancedInput->BindAction(PlayerController->MoveAction.Get(), ETriggerEvent::Triggered, this, &ADronePawn::Move);
+
+				EnhancedInput->BindAction(PlayerController->MoveAction.Get(), ETriggerEvent::Completed, this, &ADronePawn::MoveEnd);
 			}
 
 			if (PlayerController->LookAction)
@@ -31,6 +35,13 @@ void ADronePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	}
 }
 
+void ADronePawn::MoveStart(const FInputActionValue& Value)
+{
+	FVector MoveInput = Value.Get<FVector>();
+
+	SetIsHover(true);
+}
+
 void ADronePawn::Move(const FInputActionValue& Value)
 {
 	if (!Controller)
@@ -39,6 +50,7 @@ void ADronePawn::Move(const FInputActionValue& Value)
 	}
 
 	FVector MoveInput = Value.Get<FVector>();
+
 	if (!FMath::IsNearlyZero(MoveInput.SizeSquared()))
 	{
 		MoveInput.Normalize();
@@ -46,10 +58,15 @@ void ADronePawn::Move(const FInputActionValue& Value)
 		float DeltaTime = GetWorld()->GetDeltaSeconds();
 		MoveInput.X *= Speed * DeltaTime;
 		MoveInput.Y *= Speed * DeltaTime;
-		MoveInput.Z *= HoverSpeed * DeltaTime;
+		MoveInput.Z *= (GetGravity() + HoverSpeed) * DeltaTime;
 
 		AddActorLocalOffset(MoveInput, true);
 	}
+}
+
+void ADronePawn::MoveEnd(const FInputActionValue& Value)
+{
+	SetIsHover(false);
 }
 
 void ADronePawn::Look(const FInputActionValue& Value)

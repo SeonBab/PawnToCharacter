@@ -19,7 +19,11 @@ public:
 
 protected:
 	UFUNCTION()
+	void MoveStart(const FInputActionValue& Value);
+	UFUNCTION()
 	void Move(const FInputActionValue& Value);
+	UFUNCTION()
+	void MoveEnd(const FInputActionValue& Value);
 	UFUNCTION()
 	void Look(const FInputActionValue& Value);
 	UFUNCTION()
