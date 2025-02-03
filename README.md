@@ -18,7 +18,7 @@
 
 ### 개발 기간
 
-2025.01.30 ~ 2025.02.
+2025.01.30 ~ 2025.02.03
 
 ## 필수 과제
 
@@ -109,9 +109,42 @@ SpartaPuzzle
 
 ## 클래스 다이어그램
 
+![Image](https://github.com/user-attachments/assets/16641ce6-7fc1-41eb-a323-4e10f9123e7c)
 
+## 핵심 클래스 설명 및 핵심 로직
 
-## 클래스 설명 및 핵심 로직
+### ABasePawn
+
+모든 폰들이 필요한 컴포넌트와 멤버 변수를 가집니다.
+
++ 캡슐 컴포넌트
++ 스켈레탈 메시 컴포넌트
++ 스프링 암 컴포넌트
++ 카메라 컴포넌트
+
+멤버 변수로는 이동속도, 공중 이동 속도, 폰 상태, 중력 등이 있습니다.
+
+해당 클래스의 `Fall`함수에서 중력 가속도를 결정하고, 폰을 낙하합니다.  
+또한 공중에 떠있는지 판단하고, 공중에 떠있다면 이동속도를 감소합니다.
+
+### ABasicPawn
+
+기본적으로 플레이어의 입력을 받아 수평 이동 하는 폰 클래스입니다.
+
+`AddActorLocalOffset`함수를 사용해 X와 Y축으로 폰을 이동합니다.
+
+`AddActorLocalRotation`함수를 사용해 Yaw를 축으로 폰을 회전합니다.  
+`SpringArmComp->AddLocalRotation`함수를 사용해 Pitch를 축으로 카메라를 회전합니다.
+
+### ADronePawn
+
+플레이어의 입력을 받아 드론/비행체의 움직임처럼 방향과 기울기를 변화하고, 전진/후진 및 상승/하강 됩니다.
+
+`AddActorLocalOffset`함수를 사용해 X와 Y축와 Z축으로 폰을 이동합니다.
+
+`AddActorLocalRotation`함수를 사용해 모든 축으로 폰을 회전합니다.
+
+`AddActorLocalRotation`함수를 사용해 Roll 회전을 합니다.
 
 ### 테스트 케이스
 
@@ -123,7 +156,8 @@ SpartaPuzzle
 |ADronePawn의 Move함수 동작 확인|이동이 의도대로 동작하는지 확인|Normal|
 |ADronePawn의 Look함수 동작 확인|폰 및 카메라 회전이 의도대로 동작하는지 확인|Normal|
 |ADronePawn의 Roll함수 동작 확인|폰 및 카메라 회전이 좌우로 회전하는지 확인|Normal|
-|ADronePawn의||Normal|
+|ABaiscPawn과 ADronePawn 낙하 테스트|중력 가속도를 받아 낙하하는지 확인, 호버 중 낙하가 안되는지 확인|Normal|
+|ABaiscPawn과 ADronePawn 에어 컨트롤 테스트|공중에 떠있는 상태에서 이동시 이동속도가 감소했는지 확인|Noremal|
 
 ## 주의사항
 
