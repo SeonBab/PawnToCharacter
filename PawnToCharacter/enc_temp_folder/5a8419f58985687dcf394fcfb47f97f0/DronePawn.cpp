@@ -56,8 +56,8 @@ void ADronePawn::Move(const FInputActionValue& Value)
 		MoveInput.Normalize();
 
 		float DeltaTime = GetWorld()->GetDeltaSeconds();
-		MoveInput.X *= MoveSpeed * DeltaTime;
-		MoveInput.Y *= MoveSpeed * DeltaTime;
+		MoveInput.X *= Speed * DeltaTime;
+		MoveInput.Y *= Speed * DeltaTime;
 		MoveInput.Z *= (GetGravity() + HoverSpeed) * DeltaTime;
 
 		AddActorLocalOffset(MoveInput, true);

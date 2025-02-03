@@ -52,7 +52,7 @@ protected:
 	TObjectPtr<UCameraComponent> CameraComp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
-	float MoveSpeed = 600.f;
+	float Speed = 600.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", meta = (AllowPrivateAccess = true))
 	float AirControllSpeed = 0.5f;
