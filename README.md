@@ -80,7 +80,7 @@
 ## 프로젝트 구조
 
 ```
-SpartaPuzzle
+PawnToCharacter
 ┃
 ┃
 ┣ Pawn      // 디렉토리
